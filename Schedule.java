@@ -16,7 +16,8 @@ public class Schedule {
 	private Airport destinationAirport;
 	private LocalDateTime arrivalTime;
 	private LocalDateTime departureTime;
-	
+
+	public Schedule(){}
 	public Schedule(String scheduleId, Airport sourceAirport, Airport destinationAirport, LocalDateTime arrivalTime,
 			LocalDateTime departureTime) {
 		super();
