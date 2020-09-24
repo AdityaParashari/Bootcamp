@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.flightmgmt.dto.FlightDetailDto;
-import com.cg.flightmgmt.dto.FlightDto;
-import com.cg.flightmgmt.exceptions.FlightNotFoundException;
-import com.cg.flightmgmt.exceptions.InvalidArgumentException;
-import com.cg.flightmgmt.model.Flight;
-import com.cg.flightmgmt.services.IFlightService;
+import com.cg.flightmanagement.dto.FlightDetailDto;
+import com.cg.flightmanagement.dto.FlightDto;
+import com.cg.flightmanagement.exceptions.FlightNotFoundException;
+import com.cg.flightmanagement.exceptions.InvalidArgumentException;
+import com.cg.flightmanagement.models.Flight;
+import com.cg.flightmanagement.service.IFlightService;
 
 @RestController
 @RequestMapping("/flights")
