@@ -20,8 +20,9 @@ public class Flight {
 	private  String carrierName ;
 	private int seatCapacity ;
 	
-	
-	
+	public Flight() {
+		super();
+	}
 	
 	public Flight(BigInteger flightNumber, String flightModel, String carrierName, int seatCapacity) {
 		super();
