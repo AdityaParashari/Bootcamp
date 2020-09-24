@@ -1,4 +1,4 @@
-package com.cg.flightmgmt.dto;
+package com.capg.flightmanagement.dto;
 
 import java.math.BigInteger;
 
