@@ -1,4 +1,4 @@
-package com.cg.flightmgmt.controller;
+package com.capg.flightmanagement.controller;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
