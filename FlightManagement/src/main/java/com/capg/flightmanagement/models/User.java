@@ -1,4 +1,4 @@
-package org.cap.usermgt.entities;
+package org.capg.flightmanagement.models;
 
 import java.math.BigInteger;
 
