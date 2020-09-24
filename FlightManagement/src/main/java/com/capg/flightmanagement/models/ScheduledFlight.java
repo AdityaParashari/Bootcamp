@@ -1,4 +1,4 @@
-package com.flight_management.Entity;
+package com.capg.flightmanagement.models;
 
 
 import javax.persistence.Column;
