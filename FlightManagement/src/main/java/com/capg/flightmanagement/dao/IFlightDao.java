@@ -1,4 +1,4 @@
-package com.cg.flightmgmt.dao;
+package com.capg.flightmanagement.dao;
 
 import java.math.BigInteger;
 
