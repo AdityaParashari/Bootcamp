@@ -1,4 +1,4 @@
-package com.cg.exceptions;
+package com.capg.flightmanagement.exceptions;
 
 public class InvalidArgumentException extends RuntimeException {
 	
