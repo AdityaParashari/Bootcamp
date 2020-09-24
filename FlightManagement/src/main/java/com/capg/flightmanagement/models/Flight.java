@@ -1,4 +1,4 @@
-package com.cg.flightmgmt.entities;
+package com.capg.flightmanagement.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
