@@ -13,8 +13,8 @@
 	<artifactId>flightmanagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>flightmanagement</name>
-	<description>flightmanagement</description>
+	<name>FlightManagement</name>
+	<description>FlightManagement</description>
 
 	<properties>
 		<java.version>1.8</java.version>
