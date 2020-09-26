@@ -76,7 +76,7 @@ public class AirportController {
 		Airport airport = airportService.fetchAirportById(airportCode);
 		airport.setAirportName(airportDto.getAirportName());
 		airport.setAirportLocation(airportDto.getAirportLocation());
-		airportService.updatedAirport(airport);
+		airportService.addAirport(airport);
 		ResponseEntity<Boolean> response = new ResponseEntity<Boolean>(true,HttpStatus.OK);
 		return response;
 	}
