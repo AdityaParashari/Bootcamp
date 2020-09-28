@@ -3,7 +3,6 @@ package com.capg.flightmanagement.controller;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.validation.ConstraintViolationException;
 
@@ -20,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.flightmanagement.dto.FlightDetailDto;
-import com.cg.flightmanagement.dto.FlightDto;
-import com.cg.flightmanagement.exceptions.FlightNotFoundException;
-import com.cg.flightmanagement.exceptions.InvalidArgumentException;
-import com.cg.flightmanagement.models.Flight;
-import com.cg.flightmanagement.service.IFlightService;
+import com.capg.flightmanagement.dto.FlightDetailDto;
+import com.capg.flightmanagement.dto.FlightDto;
+import com.capg.flightmanagement.exceptions.FlightNotFoundException;
+import com.capg.flightmanagement.exceptions.InvalidArgumentException;
+import com.capg.flightmanagement.models.Flight;
+import com.capg.flightmanagement.service.IFlightService;
 
 @RestController
 @RequestMapping("/flights")
@@ -150,16 +149,3 @@ public class FlightRestController {
 	    }
 
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-

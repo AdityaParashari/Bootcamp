@@ -1,48 +1,64 @@
-package org.capg.flightmanagement.models;
+package com.capg.flightmanagement.models;
 
 import java.math.BigInteger;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="user")
 public class User {
-
+	
+	@Id
+	@SequenceGenerator(name="seq", initialValue = 100, allocationSize = 2000)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	@Column(name="user_id",unique = true)
+	private int userId;
+	
+	@Column(name="user_email", unique = true)
+	private String email;
+	
 	@Column(name="user_type")
 	private String userType;
-	@Id
-	@GeneratedValue
-	@Column(name="user_id")
-	private int userId;
+	
 	@Column(name="user_name")
 	private String userName;
+	
 	@Column(name="user_password")
 	private String userPassword;
+	
 	@Column(name="user_phone")
 	private BigInteger userPhone;
-	@Column(name="user_email")
-	private String email;
 	
 	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public User(String userType, int userId, String userName, String userPassword, BigInteger userPhone,
-			String email) {
+
+	public User(int userId, String email, String userType, String userName, String userPassword, BigInteger userPhone) {
 		super();
-		this.userType = userType;
 		this.userId = userId;
+		this.email = email;
+		this.userType = userType;
 		this.userName = userName;
 		this.userPassword = userPassword;
 		this.userPhone = userPhone;
-		this.email = email;
 	}
 
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public String getUserType() {
 		return userType;
@@ -50,12 +66,7 @@ public class User {
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -80,67 +91,11 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + userId;
-		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
-		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
-		result = prime * result + ((userPhone == null) ? 0 : userPhone.hashCode());
-		result = prime * result + ((userType == null) ? 0 : userType.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (userId != other.userId)
-			return false;
-		if (userName == null) {
-			if (other.userName != null)
-				return false;
-		} else if (!userName.equals(other.userName))
-			return false;
-		if (userPassword == null) {
-			if (other.userPassword != null)
-				return false;
-		} else if (!userPassword.equals(other.userPassword))
-			return false;
-		if (userPhone == null) {
-			if (other.userPhone != null)
-				return false;
-		} else if (!userPhone.equals(other.userPhone))
-			return false;
-		if (userType == null) {
-			if (other.userType != null)
-				return false;
-		} else if (!userType.equals(other.userType))
-			return false;
-		return true;
-	}
-
 
 	@Override
 	public String toString() {
-		return "User [userType=" + userType + ", userId=" + userId + ", userName=" + userName + ", userPassword="
-				+ userPassword + ", userPhone=" + userPhone + ", email=" + email + "]";
+		return "User [userId=" + userId + ", email=" + email + ", userType=" + userType + ", userName=" + userName
+				+ ", userPassword=" + userPassword + ", userPhone=" + userPhone + "]";
 	}
 	
 	

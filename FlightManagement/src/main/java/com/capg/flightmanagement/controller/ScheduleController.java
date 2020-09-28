@@ -3,6 +3,8 @@ package com.capg.flightmanagement.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class ScheduleController {
 	 * @return
 	 */
 	@PostMapping("/add")
-	ResponseEntity<Schedule> addingSchedule(@RequestBody ScheduleRequest scheduleDto){
+	ResponseEntity<Schedule> addingSchedule(@RequestBody @Valid ScheduleRequest scheduleDto){
 		Schedule schedule = convertScheduleDto(scheduleDto);
 		schedule=scheduleService.addSchedule(schedule);
 		ResponseEntity<Schedule> response = new ResponseEntity<Schedule>(schedule,HttpStatus.OK);
@@ -75,14 +77,10 @@ public class ScheduleController {
 	 * @return
 	 */
 	@PutMapping("/updateSchedule/{id}")
-	ResponseEntity<Boolean> updateSchedule(@PathVariable("id") String scheduleId,@RequestBody ScheduleRequest scheduleDto){
-		Schedule schedule = scheduleService.fetchScheduleById(scheduleId);
-		schedule.setSourceAirport(scheduleDto.getSourceAirport());
-		schedule.setDestinationAirport(scheduleDto.getDestinationAirport());
-		schedule.setArrivalTime(LocalDateTime.parse(scheduleDto.getArrivalTime()));
-		schedule.setDepartureTime(LocalDateTime.parse(scheduleDto.getDepartureTime()));
-		schedule=scheduleService.addSchedule(schedule);
-		ResponseEntity<Boolean> response = new ResponseEntity<Boolean>(true,HttpStatus.OK);
+	ResponseEntity<String> updateSchedule(@PathVariable("id") String scheduleId,@RequestBody ScheduleRequest scheduleDto){
+		Schedule schedule = new Schedule(scheduleId,scheduleDto.getSourceAirport(),scheduleDto.getDestinationAirport(),LocalDateTime.parse(scheduleDto.getArrivalTime()),LocalDateTime.parse(scheduleDto.getDepartureTime()));
+		String msg=scheduleService.updateSchedule(schedule);
+		ResponseEntity<String> response = new ResponseEntity<String>(msg,HttpStatus.OK);
 		return response;
 	}
 	
@@ -92,9 +90,9 @@ public class ScheduleController {
 	 * @return
 	 */
 	@DeleteMapping("/delete/{id}")
-	ResponseEntity<Boolean> deleteSchedule(@PathVariable("id") String scheduleId){
-		scheduleService.removeSchedule(scheduleId);
-		ResponseEntity<Boolean> response = new ResponseEntity<Boolean>(true,HttpStatus.OK);
+	ResponseEntity<String> deleteSchedule(@PathVariable("id") String scheduleId){
+		String msg=scheduleService.removeSchedule(scheduleId);
+		ResponseEntity<String> response = new ResponseEntity<String>(msg,HttpStatus.OK);
 		return response;
 	}
 	
@@ -108,29 +106,5 @@ public class ScheduleController {
 		return schedule;
 	}
 	
-	/**
-	 * Handling ScheduleNotFoundException
-	 * @param exception
-	 * @return
-	 */
-	@ExceptionHandler(ScheduleNotFoundException.class)
-	public ResponseEntity<String> handleTicketNotFoundException(ScheduleNotFoundException exception){
-		 Log.error("Schedule Exception",exception);
-		 String msg = exception.getMessage();
-	     ResponseEntity<String> response = new ResponseEntity<>(msg, HttpStatus.NOT_FOUND);
-	     return response;
-	}
 	
-	/**
-	 * Handling Exceptions
-	 * @param ex
-	 * @return
-	 */
-	@ExceptionHandler(Throwable.class)
-    public ResponseEntity<String> handleAll(Throwable ex) {
-        Log.error("exception caught", ex);
-        String msg = ex.getMessage();
-        ResponseEntity<String> response = new ResponseEntity<>(msg, HttpStatus.INTERNAL_SERVER_ERROR);
-        return response;
-    }
 }

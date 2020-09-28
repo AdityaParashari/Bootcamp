@@ -50,9 +50,9 @@ public class AirportServiceImpl implements IAirportService{
 	 * @return
 	 */
 	@Override
-	public void removeAirport(String airportCode) {
+	public String removeAirport(String airportCode) {
 		airportDao.delete(fetchAirportById(airportCode));
-		
+		return "Deleted";
 	}
 
 	/**
@@ -65,6 +65,23 @@ public class AirportServiceImpl implements IAirportService{
 		List<Airport> airports = airportDao.findAll();
 		return airports;
 	}
+
+	/**
+	 * updating airport
+	 * @param airport
+	 * @return
+	 */
+	@Override
+	public String updateAirport(Airport airport) {
+		fetchAirportById(airport.getAirportCode());
+		airportDao.save(airport);
+		return "Updated";
+	}
 	
+	@Override
+	public Airport getAirportByName(String location) {
+		Airport airport = airportDao.findByAirportLocation(location);
+		return airport;
+	}
 	
 }

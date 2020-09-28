@@ -8,5 +8,7 @@ public interface IAirportService {
 	Airport addAirport(Airport airport);
 	Airport fetchAirportById(String airportCode);
 	List<Airport> fetchAllAirports();
-	void removeAirport(String airportCode);
+	String removeAirport(String airportCode);
+	String updateAirport(Airport airport);
+	Airport getAirportByName(String location);
 }

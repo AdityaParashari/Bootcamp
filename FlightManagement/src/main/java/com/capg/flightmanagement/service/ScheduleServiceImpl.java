@@ -52,9 +52,9 @@ public class ScheduleServiceImpl implements IScheduleService {
 	 * @return
 	 */
 	@Override
-	public void removeSchedule(String scheduleId) {
+	public String removeSchedule(String scheduleId) {
 		scheduleDao.delete(fetchScheduleById(scheduleId));
-		
+		return "Deleted";
 	}
 	
 	/**
@@ -66,6 +66,19 @@ public class ScheduleServiceImpl implements IScheduleService {
 	public List<Schedule> fetchAllSchedules() {
 		List<Schedule> schedules = scheduleDao.findAll();
 		return schedules;
+	}
+
+	
+	/**
+	 * updating schedule
+	 * @param schedule
+	 * @return
+	 */
+	@Override
+	public String updateSchedule(Schedule schedule) {
+		fetchScheduleById(schedule.getScheduleId());
+		scheduleDao.save(schedule);
+		return "Updated";
 	}
 
 	

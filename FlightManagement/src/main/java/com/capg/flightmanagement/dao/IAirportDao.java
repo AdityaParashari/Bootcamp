@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.capg.flightmanagement.models.Airport;
 
 public interface IAirportDao extends JpaRepository<Airport, String>{
+	Airport findByAirportLocation(String location);
 
 }
