@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.capg.flightmanagement.dto.ExceptionResponse;
 import com.capg.flightmanagement.exceptions.AirportAlreadyExistException;
 import com.capg.flightmanagement.exceptions.AirportNotFoundException;
+import com.capg.flightmanagement.exceptions.FlightScheduleNotFoundException;
 import com.capg.flightmanagement.exceptions.ScheduleAlreadyExistException;
 import com.capg.flightmanagement.exceptions.ScheduleNotFoundException;
 
@@ -40,6 +41,18 @@ public class ExceptionController {
 		Log.error("Not Found Exception",ex);
 		return new ExceptionResponse(new Date(), HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(), ex.getMessage(), request.getRequestURI());
 		
+	}
+	@ExceptionHandler({FlightScheduleNotFoundException.class})
+	public ResponseEntity<String> handleException(Exception ex){
+		
+		if(ex instanceof FlightScheduleNotFoundException) {
+			
+			HttpStatus status=HttpStatus.NOT_FOUND;
+			return new ResponseEntity<String>("No recored exists of this Schedule ID!!", status);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	/**
