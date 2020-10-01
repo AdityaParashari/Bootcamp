@@ -29,7 +29,7 @@ import com.capg.flightmanagement.service.IScheduleService;
 @RequestMapping("/schedules")
 public class ScheduleController {
 
-	private static final Logger Log = LoggerFactory.getLogger(AirportController.class);
+	private static final Logger Log = LoggerFactory.getLogger(ScheduleController.class);
 	
 	@Autowired
 	private IScheduleService scheduleService;
@@ -77,10 +77,10 @@ public class ScheduleController {
 	 * @return
 	 */
 	@PutMapping("/updateSchedule/{id}")
-	ResponseEntity<String> updateSchedule(@PathVariable("id") String scheduleId,@RequestBody ScheduleRequest scheduleDto){
+	ResponseEntity<Schedule> updateSchedule(@PathVariable("id") String scheduleId,@RequestBody ScheduleRequest scheduleDto){
 		Schedule schedule = new Schedule(scheduleId,scheduleDto.getSourceAirport(),scheduleDto.getDestinationAirport(),LocalDateTime.parse(scheduleDto.getArrivalTime()),LocalDateTime.parse(scheduleDto.getDepartureTime()));
-		String msg=scheduleService.updateSchedule(schedule);
-		ResponseEntity<String> response = new ResponseEntity<String>(msg,HttpStatus.OK);
+		Schedule resp=scheduleService.updateSchedule(schedule);
+		ResponseEntity<Schedule> response = new ResponseEntity<Schedule>(resp,HttpStatus.OK);
 		return response;
 	}
 	
@@ -90,9 +90,9 @@ public class ScheduleController {
 	 * @return
 	 */
 	@DeleteMapping("/delete/{id}")
-	ResponseEntity<String> deleteSchedule(@PathVariable("id") String scheduleId){
-		String msg=scheduleService.removeSchedule(scheduleId);
-		ResponseEntity<String> response = new ResponseEntity<String>(msg,HttpStatus.OK);
+	ResponseEntity<Schedule> deleteSchedule(@PathVariable("id") String scheduleId){
+		Schedule schedule=scheduleService.removeSchedule(scheduleId);
+		ResponseEntity<Schedule> response = new ResponseEntity<Schedule>(schedule,HttpStatus.OK);
 		return response;
 	}
 	
