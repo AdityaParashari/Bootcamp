@@ -74,10 +74,10 @@ public class AirportController {
 	 * @return
 	 */
 	@PutMapping("/updateAirport/{id}")
-	ResponseEntity<Boolean> updateAirport(@PathVariable("id") String airportCode,@RequestBody AirportRequest airportDto){
+	ResponseEntity<Airport> updateAirport(@PathVariable("id") String airportCode,@RequestBody AirportRequest airportDto){
 		Airport airport = new Airport(airportCode,airportDto.getAirportName(),airportDto.getAirportLocation());
 		airportService.addAirport(airport);
-		ResponseEntity<Boolean> response = new ResponseEntity<Boolean>(true,HttpStatus.OK);
+		ResponseEntity<Airport> response = new ResponseEntity<Airport>(airport,HttpStatus.OK);
 		return response;
 	}
 	
@@ -87,9 +87,9 @@ public class AirportController {
 	 * @return
 	 */
 	@DeleteMapping("/delete/{id}")
-	ResponseEntity<String> deleteAirport(@PathVariable("id") String airportCode){
-		String msg=airportService.removeAirport(airportCode);
-		ResponseEntity<String> response = new ResponseEntity<String>(msg,HttpStatus.OK);
+	ResponseEntity<Airport> deleteAirport(@PathVariable("id") String airportCode){
+		Airport airport=airportService.removeAirport(airportCode);
+		ResponseEntity<Airport> response = new ResponseEntity<Airport>(airport,HttpStatus.OK);
 		return response;
 	}
 	
