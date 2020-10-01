@@ -9,6 +9,6 @@ public interface IScheduleService {
 	Schedule addSchedule(Schedule schedule);
 	Schedule fetchScheduleById(String scheduleId);
 	List<Schedule> fetchAllSchedules();
-	String removeSchedule(String scheduleId);
-	String updateSchedule(Schedule schedule);
+	Schedule removeSchedule(String scheduleId);
+	Schedule updateSchedule(Schedule schedule);
 }
