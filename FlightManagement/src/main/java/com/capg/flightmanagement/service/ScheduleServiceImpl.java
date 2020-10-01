@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capg.flightmanagement.dao.IScheduleDao;
+import com.capg.flightmanagement.exceptions.ScheduleAlreadyExistException;
 import com.capg.flightmanagement.exceptions.ScheduleNotFoundException;
 import com.capg.flightmanagement.models.Schedule;
 
@@ -27,6 +28,10 @@ public class ScheduleServiceImpl implements IScheduleService {
 	 */
 	@Override
 	public Schedule addSchedule(Schedule schedule) {
+		Optional<Schedule> option= scheduleDao.findById(schedule.getScheduleId());
+		if(option.isPresent()) {
+			throw new ScheduleAlreadyExistException("Schedule Already Exist with Schedule Id: "+schedule.getScheduleId());
+		}
 		schedule=scheduleDao.save(schedule);
 		return schedule;
 	}

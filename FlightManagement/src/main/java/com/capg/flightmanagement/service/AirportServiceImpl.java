@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capg.flightmanagement.dao.IAirportDao;
+import com.capg.flightmanagement.exceptions.AirportAlreadyExistException;
 import com.capg.flightmanagement.exceptions.AirportNotFoundException;
 import com.capg.flightmanagement.models.Airport;
 
@@ -25,6 +26,10 @@ public class AirportServiceImpl implements IAirportService{
 	 */
 	@Override
 	public Airport addAirport(Airport airport) {
+		Optional<Airport> option= airportDao.findById(airport.getAirportCode());
+		if(option.isPresent()) {
+			throw new AirportAlreadyExistException("Airport Already exist with Airport Code: "+airport.getAirportCode());
+		}
 		airport=airportDao.save(airport);
 		return airport;
 	}

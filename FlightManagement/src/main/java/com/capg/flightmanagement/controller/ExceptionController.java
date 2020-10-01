@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.capg.flightmanagement.dto.ExceptionResponse;
+import com.capg.flightmanagement.exceptions.AirportAlreadyExistException;
 import com.capg.flightmanagement.exceptions.AirportNotFoundException;
+import com.capg.flightmanagement.exceptions.ScheduleAlreadyExistException;
 import com.capg.flightmanagement.exceptions.ScheduleNotFoundException;
 
 @RestControllerAdvice
@@ -30,6 +32,13 @@ public class ExceptionController {
 	public ExceptionResponse handleNotFoundException(Exception ex, HttpServletRequest request) {
 		Log.error("Not Found Exception",ex);
 		return new ExceptionResponse(new Date(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), request.getRequestURI());
+		
+	}
+	@ExceptionHandler(value = {AirportAlreadyExistException.class,ScheduleAlreadyExistException.class})
+	@ResponseStatus(code = HttpStatus.CONFLICT)
+	public ExceptionResponse handleNotAlreadyException(Exception ex, HttpServletRequest request) {
+		Log.error("Not Found Exception",ex);
+		return new ExceptionResponse(new Date(), HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(), ex.getMessage(), request.getRequestURI());
 		
 	}
 	
