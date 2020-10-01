@@ -55,9 +55,10 @@ public class AirportServiceImpl implements IAirportService{
 	 * @return
 	 */
 	@Override
-	public String removeAirport(String airportCode) {
-		airportDao.delete(fetchAirportById(airportCode));
-		return "Deleted";
+	public Airport removeAirport(String airportCode) {
+		Airport airport = fetchAirportById(airportCode);
+		airportDao.delete(airport);
+		return airport;
 	}
 
 	/**
@@ -77,10 +78,10 @@ public class AirportServiceImpl implements IAirportService{
 	 * @return
 	 */
 	@Override
-	public String updateAirport(Airport airport) {
+	public Airport updateAirport(Airport airport) {
 		fetchAirportById(airport.getAirportCode());
 		airportDao.save(airport);
-		return "Updated";
+		return airport;
 	}
 	
 	@Override
