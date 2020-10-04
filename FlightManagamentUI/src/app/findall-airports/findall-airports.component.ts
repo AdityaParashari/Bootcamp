@@ -35,7 +35,8 @@ export class FindallAirportsComponent implements OnInit {
     },
     error =>{
       console.error("Error "+error);
-      alert(error);
+      
+      alert(airportCode+" could not be deleted!!");
     });
     this.ngOnInit();
   }

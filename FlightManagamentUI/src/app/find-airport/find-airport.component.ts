@@ -45,7 +45,7 @@ export class FindAirportComponent implements OnInit {
     },
     error =>{
       console.log("Error "+error);
-      alert(error);
+      alert(this.airport.airportCode+" could not be deleted!!");
     });
     this.show = false;
     this.errorShow = false;

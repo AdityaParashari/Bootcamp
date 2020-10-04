@@ -16,6 +16,7 @@ import { FindallAirportsComponent } from './findall-airports/findall-airports.co
 import { UpdateAirportComponent } from './update-airport/update-airport.component';
 import { UpdateScheduleComponent } from './update-schedule/update-schedule.component';
 import { HomeComponentComponent } from './home-component/home-component.component';
+import { AirportScheduleComponent } from './airport-schedule/airport-schedule.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HomeComponentComponent } from './home-component/home-component.componen
     FindallAirportsComponent,
     UpdateAirportComponent,
     UpdateScheduleComponent,
-    HomeComponentComponent
+    HomeComponentComponent,
+    AirportScheduleComponent
   ],
   imports: [
     BrowserModule,
